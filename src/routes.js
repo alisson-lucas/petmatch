@@ -1,11 +1,11 @@
-import { createAppContainer } from 'react-navigation'
-import { createStackNavigator } from 'react-navigation-stack'
+import { createAppContainer, createSwitchNavigator } from 'react-navigation'
+// import { createSwitchNavigator } from 'react-navigation-stack'
 
 import Login from './pages/Login'
 import Home from './pages/Home'
 
 const Routes = createAppContainer(
-    createStackNavigator({
+    createSwitchNavigator({
         Login,
         Home,
     })
