@@ -3,7 +3,7 @@ import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableO
 
 import Logo from '../../assets/logo.png'
 
-function Login() {
+function Login({navigation}) {
     return (
       <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding" style={styles.container}>
         <Image source={Logo} />
@@ -19,7 +19,7 @@ function Login() {
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => alert('Sem tela pronta! ainda ;)')}>
+        onPress={() => { navigation.navigate('Cadastro') }}>
         <Text style={styles.cadastroLabel}>Não tem cadastro? Clique aqui</Text>
       </TouchableOpacity>
       
