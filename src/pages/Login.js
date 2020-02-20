@@ -65,7 +65,7 @@ function Login({navigation}) {
       color: '#444',
       height: 44,
       width: 300,
-      marginTop: 10,
+      marginTop: 5,
       marginBottom: 20,
       borderRadius: 2
     },
