@@ -5,7 +5,7 @@ function Cadastro() {
     return (
         <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding" style={styles.container}>
             <Text style={styles.titulos}>Dono</Text>
-            <View style={styles.linha}/>
+            <Text style={styles.linha}>________________________________________________________________</Text>
             <TextInput style={styles.input} placeholder="Nome" placeholderTextColor="#999" keyboardType="email-address"
             autoCapitalize="none" autoCorrect={false}/>
             <TextInput style={styles.input} placeholder="Senha" placeholderTextColor="#999" autoCapitalize="none" autoCorrect={false} />
@@ -49,8 +49,6 @@ const styles = StyleSheet.create({
       marginTop: 10
     },
     linha: {
-        borderBottomColor: '#999',
-        borderWidth: 1,
         width: 350
         
     }
