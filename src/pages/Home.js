@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, SafeAreaView, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import { View, SafeAreaView, Text, StyleSheet, Image, TouchableOpacity, ScrollView} from 'react-native';
+
+import BottomNavigator from '../components/BottonNavigation'
 
 import Avatar from '../../assets/bulldog.jpg'
 import like from '../../assets/like.png'
@@ -19,12 +21,13 @@ function Home() {
             </View>
             <View style={styles.buttonsContainer}>
                 <TouchableOpacity style={styles.button}>
-                    <Image source={dislike}/>
+                    <Image style={styles.icon} source={dislike}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
-                    <Image source={like}/>
+                    <Image style={styles.icon} source={like}/>
                 </TouchableOpacity>
             </View>
+            <BottomNavigator />
         </SafeAreaView>
     )
 }
@@ -32,7 +35,7 @@ function Home() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'space-between'
     },
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignSelf: 'stretch',
         justifyContent: 'center',
-        maxHeight: 500
+        maxHeight: 700
     },
 
     card: {
@@ -58,7 +61,7 @@ const styles = StyleSheet.create({
     },
     avatar: {
         flex: 1,
-        height: 300
+        height: 400
     },
 
     footer: {
@@ -86,12 +89,14 @@ const styles = StyleSheet.create({
     },
 
     button: {
+        
         width: 50,
         height: 50,
         borderRadius: 25,
         backgroundColor: '#fff',
         justifyContent: 'center',
         marginHorizontal: 20,
+        marginVertical: 15,
         elevation: 2,
         shadowColor: '#000',
         shadowOpacity: 0.05,
@@ -100,6 +105,10 @@ const styles = StyleSheet.create({
             width: 0,
             height: 2
         }
+    },
+
+    icon: {
+        marginLeft: 14
     }
 })
 

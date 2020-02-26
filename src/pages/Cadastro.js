@@ -1,5 +1,5 @@
 import React from 'react';
-import { View,ScrollView, KeyboardAvoidingView, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View,ScrollView, KeyboardAvoidingView, Text, StyleSheet, TextInput, TouchableOpacity, Button } from 'react-native';
 
 function Cadastro({navigation}) {
   
