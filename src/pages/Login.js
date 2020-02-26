@@ -14,7 +14,7 @@ function Login({navigation}) {
       <TextInput style={styles.input} placeholder="Sua senha" placeholderTextColor="#999" autoCapitalize="none" autoCorrect={false} />
     
       <TouchableOpacity
-        onPress={() => alert('Sem tela pronta! ainda ;)')}
+        onPress={() => { navigation.navigate('Home') }}
         style={ styles.button }>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>

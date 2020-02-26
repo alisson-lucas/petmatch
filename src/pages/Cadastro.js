@@ -1,29 +1,28 @@
 import React from 'react';
-import { View, KeyboardAvoidingView, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View,ScrollView, KeyboardAvoidingView, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
 function Cadastro({navigation}) {
   
   return (
-        <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding" style={styles.container}>
-            <Text style={styles.titulos}>Dono</Text>
-            <Text style={styles.linha}>_________________________________________________________________</Text>
-            <TextInput style={styles.input} placeholder="Nome" placeholderTextColor="#999"
-            autoCapitalize="none" autoCorrect={false}/>
-            <TextInput style={styles.input} placeholder="E-mail" placeholderTextColor="#999" keyboardType="email-address" autoCapitalize="none" autoCorrect={false} />
-            <TextInput style={styles.input} placeholder="Senha" placeholderTextColor="#999" autoCapitalize="none" autoCorrect={false} />
-            <Text style={styles.titulos}>Pet</Text>
-            <Text style={styles.linha}>_________________________________________________________________</Text>
-            <TextInput style={styles.input} placeholder="Nome" placeholderTextColor="#999"
-            autoCapitalize="none" autoCorrect={false}/>
-            <TextInput style={styles.input} placeholder="Raça" placeholderTextColor="#999"
-            autoCapitalize="none" autoCorrect={false}/>
-            <TouchableOpacity
-              onPress={() =>{ navigation.navigate('Login') && alert('Cadastrado')}}
-              style={ styles.button }>
-              <Text style={styles.buttonText}>Cadastrar</Text>
-            </TouchableOpacity>
-            
-        </KeyboardAvoidingView>
+    <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding" style={styles.container}>
+        <Text style={styles.titulos}>Dono</Text>
+        <Text style={styles.linha}>_________________________________________________________________</Text>
+        <TextInput style={styles.input} placeholder="Nome" placeholderTextColor="#999"
+          autoCapitalize="none" autoCorrect={false}/>
+        <TextInput style={styles.input} placeholder="E-mail" placeholderTextColor="#999" keyboardType="email-address" autoCapitalize="none" autoCorrect={false} />
+        <TextInput style={styles.input} placeholder="Senha" placeholderTextColor="#999" autoCapitalize="none" autoCorrect={false} />
+        <Text style={styles.titulos}>Pet</Text>
+        <Text style={styles.linha}>_________________________________________________________________</Text>
+        <TextInput style={styles.input} placeholder="Nome" placeholderTextColor="#999"
+         autoCapitalize="none" autoCorrect={false}/>
+        <TextInput style={styles.input} placeholder="Raça" placeholderTextColor="#999"
+          autoCapitalize="none" autoCorrect={false}/>
+          <TouchableOpacity
+            onPress={() =>{ navigation.navigate('Login') && alert('Cadastrado')}}
+            style={ styles.button }>
+            <Text style={styles.buttonText}>Cadastrar</Text>
+          </TouchableOpacity>
+    </KeyboardAvoidingView>
     )
 }
 
