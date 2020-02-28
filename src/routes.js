@@ -4,6 +4,7 @@ import { createStackNavigator, HeaderBackButton, HeaderBackground } from 'react-
 import Login from './pages/Login'
 import Home from './pages/Home'
 import Cadastro from './pages/Cadastro'
+import Locais from './pages/Locais'
 
 const Routes = createAppContainer(
     createStackNavigator({
@@ -16,13 +17,20 @@ const Routes = createAppContainer(
         Home: {
             screen: Home,
             navigationOptions: {
-                headerTitle: 'Home'
+                headerTitle: 'Home',
+                headerLeft: () => null
             }
         },
         Cadastro: {
             screen: Cadastro,
             navigationOptions: {
                 headerTitle: 'Cadastro'
+            }
+        },
+        Locais: {
+           screen: Locais,
+            navigationOptions: {
+                headerTitle: 'Locais'
             }
         }
     })
