@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Animated, Text, Alert } from 'react-native';
 
+import { withNavigation } from 'react-navigation';
+
 import avatar from '../../assets/animal.png'
 import locais from '../../assets/pin.png'
 
-export default class BottomNavigator extends Component {
+class BottomNavigator extends Component {
 
     toggleOpen = () => {
-
-
+        
+        
     }
-
+    
+    
     render() {
+
+
+
         return (
             <View style={{
                 // flex: 1,
@@ -112,7 +118,7 @@ export default class BottomNavigator extends Component {
                         }}>
 
                             <TouchableOpacity
-                                onPress={() => { Alert.alert("click") }}
+                                onPress={() => this.props.navigation.navigate('Locais')}
                             >
                                 <Image
                                     source={locais}
@@ -192,3 +198,5 @@ const styles = StyleSheet.create({
 
 
 });
+
+export default withNavigation(BottomNavigator);
