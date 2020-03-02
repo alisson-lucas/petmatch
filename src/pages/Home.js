@@ -47,7 +47,7 @@ function Home({navigation}) {
                 </View>
             </View>
             </ScrollView>
-            <BottomNavigator />
+            {/* <BottomNavigator /> */}
         </SafeAreaView>
     )
 }

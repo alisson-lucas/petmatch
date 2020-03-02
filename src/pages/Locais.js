@@ -76,7 +76,7 @@ function Locais() {
                     </Callout>
                 </Marker>
             </MapView>
-            <BottomNavigator />
+            {/* <BottomNavigator /> */}
         </View>
     )
 }
