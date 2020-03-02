@@ -31,8 +31,13 @@ const Routes = createAppContainer(
            screen: Locais,
             navigationOptions: {
                 headerTitle: 'Locais',
-                headerLeft: () => null
+                // headerLeft: () => null
+                headerBackTitleVisible: false
             }
+        }
+    }, {
+        defaultNavigationOptions: {
+            headerTintColor: '#000'
         }
     })
     
