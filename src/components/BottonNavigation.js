@@ -80,7 +80,7 @@ class BottomNavigator extends Component {
 
                         flexDirection: 'column', alignItems: 'center', justifyContent: 'center'
                     }}>
-                        <TouchableOpacity onPress={() => { Alert.alert('click') }}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
                             <Image
 
                                 style={{ width: 30, height: 30 }}

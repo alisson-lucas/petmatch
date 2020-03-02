@@ -30,7 +30,8 @@ const Routes = createAppContainer(
         Locais: {
            screen: Locais,
             navigationOptions: {
-                headerTitle: 'Locais'
+                headerTitle: 'Locais',
+                headerLeft: () => null
             }
         }
     })

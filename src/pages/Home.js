@@ -4,29 +4,49 @@ import { View, SafeAreaView, Text, StyleSheet, Image, TouchableOpacity, ScrollVi
 import BottomNavigator from '../components/BottonNavigation'
 
 import Avatar from '../../assets/thor.jpeg'
+import Avatar2 from '../../assets/bulldog.jpg'
 import like from '../../assets/like.png'
 import dislike from '../../assets/dislike.png'
 
 function Home({navigation}) {
     return (
         <SafeAreaView style={styles.container}>
+            <ScrollView>
             <View style={styles.cardContainer}>
                 <View style={styles.card}>
                     <Image style={styles.avatar} source={Avatar}/>
                     <View style={styles.footer}>
                         <Text style={styles.name}>Thor</Text>
                         <Text style={styles.bio} numberOfLines={3}>Uma bio Qualquer</Text>
-            <View style={styles.buttonsContainer}>
-                <TouchableOpacity style={styles.button}>
-                    <Image style={styles.icon} source={dislike}/>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
-                    <Image style={styles.icon} source={like}/>
-                </TouchableOpacity>
-            </View>
+                        <View style={styles.buttonsContainer}>
+                            <TouchableOpacity style={styles.button}>
+                                <Image style={styles.icon} source={dislike}/>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.button}>
+                                <Image style={styles.icon} source={like}/>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </View>
+            <View style={styles.cardContainer}>
+                <View style={styles.card}>
+                    <Image style={styles.avatar} source={Avatar2}/>
+                    <View style={styles.footer}>
+                        <Text style={styles.name}>Thor</Text>
+                        <Text style={styles.bio} numberOfLines={3}>Uma bio Qualquer</Text>
+                        <View style={styles.buttonsContainer}>
+                            <TouchableOpacity style={styles.button}>
+                                <Image style={styles.icon} source={dislike}/>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.button}>
+                                <Image style={styles.icon} source={like}/>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </View>
+            </ScrollView>
             <BottomNavigator />
         </SafeAreaView>
     )
@@ -45,6 +65,7 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         justifyContent: 'center',
         maxHeight: 700,
+        width: 375
     },
 
     card: {
@@ -53,14 +74,13 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         margin: 20,
         overflow: 'hidden',
-        position: 'absolute',
+        // position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0
     },
     avatar: {
-        flex: 1,
         height: 400,
         width: '100%'
     },
