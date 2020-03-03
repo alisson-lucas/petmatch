@@ -1,25 +1,25 @@
 import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
-import { createStackNavigator, HeaderBackButton, HeaderBackground } from 'react-navigation-stack'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack'
+
+import HomeRoutes from './routes/homeRoutes'
 
 import Login from './pages/Login'
-import Home from './pages/Home'
 import Cadastro from './pages/Cadastro'
-import Locais from './pages/Locais'
 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-function Routes () {
+
+export default function Routes () {
     return (
-        <Tab.Navigator>
-            <Tab.Screen name="Login" component={Login} />
-            <Tab.Screen name="Home" component={Home} />
-            <Tab.Screen name="Cadastro" component={Cadastro} />
-            <Tab.Screen name="Locais" component={Locais} />
-        </Tab.Navigator>
+        <Stack.Navigator>
+            <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
+            <Stack.Screen name="Home" component={HomeRoutes} />
+            <Stack.Screen name="Cadastro" component={Cadastro} options={{headerBackTitleVisible: false, headerTintColor: '#000'}}/>
+        </Stack.Navigator>
     )
 }
 
@@ -59,5 +59,3 @@ function Routes () {
 //     })
     
 // );
-
-export default Routes;
