@@ -17,7 +17,7 @@ export default function Routes () {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
-            <Stack.Screen name="Home" component={HomeRoutes} />
+            <Stack.Screen name="Home" component={HomeRoutes} options={{headerTitle: 'PetMatch', headerLeft: false}} />
             <Stack.Screen name="Cadastro" component={Cadastro} options={{headerBackTitleVisible: false, headerTintColor: '#000'}}/>
         </Stack.Navigator>
     )
