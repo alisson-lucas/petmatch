@@ -1,5 +1,6 @@
 import React from 'react'
-import {View, ScrollView, StyleSheet, Image, Text} from 'react-native'
+import {View, ScrollView, StyleSheet, Image, Text, TouchableOpacity} from 'react-native'
+import { Ionicons } from '@expo/vector-icons';
 
 import Avatar from '../../assets/thor3.jpeg'
 
@@ -8,6 +9,14 @@ function Perfil () {
         <>
         <ScrollView style={styles.container}>
             <View style={styles.cardPerfil}>
+                <View style={styles.optBotoes}>
+                    <TouchableOpacity>
+                     <Ionicons style={styles.btnSettings} name="md-settings" size={32}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                      <Ionicons style={styles.btnEdit} name="md-create" size={32}/>
+                    </TouchableOpacity>
+                </View>
                 <Image style={styles.avatar} source={Avatar}/>
 
                 <View style={styles.avatarTituloContainer}>
@@ -54,7 +63,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#f05a5b',
         marginLeft: 125,
-        marginTop: 40
+        marginTop: 10
         // alignItems: 'center',
         // justifyContent: 'center'
     },
@@ -81,6 +90,19 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#999',
         marginTop: 2
+    },
+    optBotoes: {
+        marginTop: 10,
+        marginLeft: 15,
+        marginRight: 15,
+        alignItems: 'stretch'
+    },
+    btnSettings: {
+        alignSelf: 'flex-end'
+    },
+    btnEdit: {
+        marginTop: -35,
+        alignSelf: 'flex-start'
     }
 })
 
