@@ -3,6 +3,10 @@ import {View, ScrollView, StyleSheet, Image, Text, TouchableOpacity} from 'react
 import { Ionicons } from '@expo/vector-icons';
 
 import Avatar from '../../assets/thor3.jpeg'
+import FeedFoto from '../../assets/thor.jpeg'
+import FeedFoto2 from '../../assets/thor2.jpeg'
+import FeedFoto3 from '../../assets/thor3.jpeg'
+import FeedFoto4 from '../../assets/thor4.jpeg'
 
 function Perfil () {
     return (
@@ -31,8 +35,12 @@ function Perfil () {
                      Etiam quis sapien ut leo laoreet temp id at nibh. Vivamus mauris sapien, tincidunt sit amet lacinia ut, 
                      sollicitudin nec libero. vestibulum.</Text>
                 </View>
-                
-
+            </View>
+            <View style={styles.fotosFeedContainer}>
+                <Image style={styles.fotosFeed} source={FeedFoto}/>
+                <Image style={styles.fotosFeed} source={FeedFoto2}/>
+                <Image style={styles.fotosFeed} source={FeedFoto3}/>
+                <Image style={styles.fotosFeed} source={FeedFoto4}/>
             </View>
 
         </ScrollView>
@@ -103,6 +111,16 @@ const styles = StyleSheet.create({
     btnEdit: {
         marginTop: -35,
         alignSelf: 'flex-start'
+    },
+    fotosFeedContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+
+    },
+    fotosFeed: {
+        width: 123,
+        height: 123,
+        margin: 1
     }
 })
 

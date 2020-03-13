@@ -7,6 +7,7 @@ import BottomNavigator from '../components/BottonNavigation'
 import petShop1 from '../../assets/petShop1.jpg'
 import petShop2 from '../../assets/petShop2.jpg'
 import petShop3 from '../../assets/petShop3.jpg'
+import petShop4 from '../../assets/petShop2.jpg'
 import { setLightEstimationEnabled } from 'expo/build/AR'
 
 function Locais() {
@@ -70,6 +71,17 @@ function Locais() {
                     <Callout>
                         <View style={styles.callout}>
                             <Text style={styles.name}>petShop3</Text>
+                            <Text style={styles.bio}>Servicos de pet shop melhorados</Text>
+                            <Text styles={styles.services}>Banho, Tosa, Hotelzinho</Text>
+                        </View>
+                    </Callout>
+                </Marker>
+                <Marker coordinate={{latitude: -7.9403394, longitude: -34.8846336}}>
+                    <Image style={styles.avatar} source={petShop2} />
+
+                    <Callout>
+                        <View style={styles.callout}>
+                            <Text style={styles.name}>petShop2 Paulista</Text>
                             <Text style={styles.bio}>Servicos de pet shop melhorados</Text>
                             <Text styles={styles.services}>Banho, Tosa, Hotelzinho</Text>
                         </View>
