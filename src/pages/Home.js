@@ -5,8 +5,8 @@ import BottomNavigator from '../components/BottonNavigation'
 
 import Avatar from '../../assets/thor.jpeg'
 import Avatar2 from '../../assets/bulldog.jpg'
-import like from '../../assets/like.png'
-import dislike from '../../assets/dislike.png'
+import Match from '../../assets/like.png'
+import Like from '../../assets/likeBlue.png'
 
 function Home({navigation}) {
     return (
@@ -20,10 +20,10 @@ function Home({navigation}) {
                         <Text style={styles.bio} numberOfLines={3}>Uma bio Qualquer</Text>
                         <View style={styles.buttonsContainer}>
                             <TouchableOpacity style={styles.button}>
-                                <Image style={styles.icon} source={dislike}/>
+                                <Image style={styles.likeIcon} source={Like}/>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.button}>
-                                <Image style={styles.icon} source={like}/>
+                                <Image style={styles.icon} source={Match}/>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -37,10 +37,10 @@ function Home({navigation}) {
                         <Text style={styles.bio} numberOfLines={3}>Uma bio Qualquer</Text>
                         <View style={styles.buttonsContainer}>
                             <TouchableOpacity style={styles.button}>
-                                <Image style={styles.icon} source={dislike}/>
+                                <Image style={styles.likeIcon} source={Like}/>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.button}>
-                                <Image style={styles.icon} source={like}/>
+                                <Image style={styles.icon} source={Match}/>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -130,7 +130,13 @@ const styles = StyleSheet.create({
     },
 
     icon: {
-        marginLeft: 14
+        marginLeft: 12,
+        
+    },
+    likeIcon: {
+        marginLeft: 12,
+        width: 25,
+        height: 25
     }
 })
 

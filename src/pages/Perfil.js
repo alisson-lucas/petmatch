@@ -92,12 +92,13 @@ const styles = StyleSheet.create({
     },
     petInfo: {
         marginTop: 30,
-        marginLeft: 20
+        marginLeft: 20,
+        marginRight: 20
     },
     infoLabel: {
         fontSize: 16,
         color: '#999',
-        marginTop: 2
+        marginTop: 2,
     },
     optBotoes: {
         marginTop: 10,
