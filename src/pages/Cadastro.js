@@ -1,29 +1,96 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { View,ScrollView, KeyboardAvoidingView, Text, StyleSheet, TextInput, TouchableOpacity, Button } from 'react-native';
+import firebase from 'firebase'
+export default class Cadastro extends Component {
 
-function Cadastro({navigation}) {
+  constructor(props){
+     super(props);
+     this.state = {
+        nome: '',
+        email: '',
+        senha: '',
+        nomePet: '',
+        raca: ''
+      }
+      
+      this.cadastrar = this.cadastrar.bind(this);
+
+     let firebaseConfig = {
+      apiKey: "AIzaSyCrIguFGp_DyKYvsf5u7ODgmZ_UCxG9Z70",
+      authDomain: "petmatch-d1a3f.firebaseapp.com",
+      databaseURL: "https://petmatch-d1a3f.firebaseio.com",
+      projectId: "petmatch-d1a3f",
+      storageBucket: "petmatch-d1a3f.appspot.com",
+      messagingSenderId: "565679450859",
+      appId: "1:565679450859:web:16519f1a7d127abd26ecae",
+      measurementId: "G-9RD1PPG59L"
+    };
+    // Initialize Firebase
+    if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+    // firebase.analytics();
+    }
+
+    firebase.auth().signOut();
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user){
+        firebase.database().ref('usuarios').child(user.uid).set({
+          nome: this.state.nome,
+          nomePet: this.state.nomePet,
+          raca: this.state.raca
+        })
+
+        alert('usuário criado com sucesso')
+      }
+    })
+
+  }
+
+  cadastrar() {
+    firebase.auth().createUserWithEmailAndPassword(
+      this.state.email,
+      this.state.senha
+    ).catch((error) => {
+      switch (error.code) {
+        case 'auth/weak-password' :
+          alert('Sua senha precisa ter pelo menos 6 caracteres' )
+          break;
+        case 'auth/email-already-in-use':
+          alert('Ja existe um usuário com este email cadastrado')
+          break;
+        default:
+          alert('Ocorreu um erro')
+      }
+     
+    })
+  }
   
-  return (
-    <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding" style={styles.container}>
+  render (){
+
+    return(
+      <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding" style={styles.container}>
         <Text style={styles.titulos}>Dono</Text>
         <Text style={styles.linha}>_________________________________________________________________</Text>
-        <TextInput style={styles.input} placeholder="Nome" placeholderTextColor="#999"
+        <TextInput onChangeText={(nome) => this.setState({nome})} style={styles.input} placeholder="Nome" placeholderTextColor="#999"
           autoCapitalize="none" autoCorrect={false}/>
-        <TextInput style={styles.input} placeholder="E-mail" placeholderTextColor="#999" keyboardType="email-address" autoCapitalize="none" autoCorrect={false} />
-        <TextInput style={styles.input} placeholder="Senha" placeholderTextColor="#999" autoCapitalize="none" autoCorrect={false} />
+        <TextInput onChangeText={(email) => this.setState({email})} style={styles.input} placeholder="E-mail" placeholderTextColor="#999" keyboardType="email-address" autoCapitalize="none" autoCorrect={false} />
+        <TextInput secureTextEntry={true} onChangeText={(senha) => this.setState({senha})} style={styles.input} placeholder="Senha" placeholderTextColor="#999" autoCapitalize="none" autoCorrect={false} />
         <Text style={styles.titulos}>Pet</Text>
         <Text style={styles.linha}>_________________________________________________________________</Text>
-        <TextInput style={styles.input} placeholder="Nome" placeholderTextColor="#999"
+        <TextInput onChangeText={(nomePet) => this.setState({nomePet})} style={styles.input} placeholder="Nome do Pet" placeholderTextColor="#999"
          autoCapitalize="none" autoCorrect={false}/>
-        <TextInput style={styles.input} placeholder="Raça" placeholderTextColor="#999"
+        <TextInput onChangeText={(raca) => this.setState({raca})} style={styles.input} placeholder="Raça" placeholderTextColor="#999"
           autoCapitalize="none" autoCorrect={false}/>
           <TouchableOpacity
-            onPress={() =>{ navigation.navigate('Login') && alert('Cadastrado')}}
+            onPress={this.cadastrar}
             style={ styles.button }>
             <Text style={styles.buttonText}>Cadastrar</Text>
           </TouchableOpacity>
+          {/* () =>{ this.props.navigation.navigate('Login') && alert('Cadastrado')} */}
     </KeyboardAvoidingView>
-    )
+  )
+}
 }
 
 const styles = StyleSheet.create({
@@ -82,4 +149,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Cadastro; 
+// export default Cadastro; 
