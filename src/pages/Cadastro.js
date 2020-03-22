@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
-import { View,ScrollView, KeyboardAvoidingView, Text, StyleSheet, TextInput, TouchableOpacity, Button } from 'react-native';
+import { View,ScrollView, KeyboardAvoidingView, Text, StyleSheet, TextInput, TouchableOpacity, Button, Image } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 import firebase from 'firebase'
+
+import Avatar from '../../assets/thor3.jpeg'
 export default class Cadastro extends Component {
 
   constructor(props){
@@ -10,7 +13,8 @@ export default class Cadastro extends Component {
         email: '',
         senha: '',
         nomePet: '',
-        raca: ''
+        raca: '',
+        idade: null
       }
       
       this.cadastrar = this.cadastrar.bind(this);
@@ -80,13 +84,26 @@ export default class Cadastro extends Component {
         <Text style={styles.linha}>_________________________________________________________________</Text>
         <TextInput onChangeText={(nomePet) => this.setState({nomePet})} style={styles.input} placeholder="Nome do Pet" placeholderTextColor="#999"
          autoCapitalize="none" autoCorrect={false}/>
-        <TextInput onChangeText={(raca) => this.setState({raca})} style={styles.input} placeholder="Raça" placeholderTextColor="#999"
-          autoCapitalize="none" autoCorrect={false}/>
-          <TouchableOpacity
-            onPress={this.cadastrar}
-            style={ styles.button }>
-            <Text style={styles.buttonText}>Cadastrar</Text>
+        <View style={styles.inputPetContainer}>
+          <View style={styles.inputRacaContainer}>
+            <TextInput onChangeText={(raca) => this.setState({raca})} style={styles.inputRaca} placeholder="Raça" placeholderTextColor="#999"
+              autoCapitalize="none" autoCorrect={false}/>
+            <TextInput keyboardType={'numeric'} onChangeText={(idade) => this.setState({idade})} style={styles.inputRaca} placeholder="Idade" placeholderTextColor="#999"
+              autoCapitalize="none" autoCorrect={false}/>
+            
+          </View>
+          <View style={styles.imageSelect}>
+          <Image style={styles.avatar} source={Avatar}/>
+          <TouchableOpacity style={styles.imageSelectButton}>
+            <Text style={styles.imageSelectText}>Escolher foto</Text>
           </TouchableOpacity>
+          </View>
+        </View>
+            <TouchableOpacity
+              onPress={this.cadastrar}
+              style={ styles.button }>
+              <Text style={styles.buttonText}>Cadastrar</Text>
+            </TouchableOpacity>
           {/* () =>{ this.props.navigation.navigate('Login') && alert('Cadastrado')} */}
     </KeyboardAvoidingView>
   )
@@ -145,7 +162,55 @@ const styles = StyleSheet.create({
       color: '#fff',
       fontWeight: 'bold',
       fontSize: 16,
-    }
+    },
+    inputPetContainer: {
+      // marginLeft: 60,
+      // marginRight: 50,
+      flexDirection: 'row',
+      justifyContent: 'space-between'
+    },
+    inputRacaContainer: {
+      alignItems: 'flex-start',
+      marginLeft: -17,
+          
+    },
+    inputRaca: {
+      borderWidth: 1,
+      borderColor: '#fff',
+      paddingHorizontal: 20,
+      backgroundColor: '#fff',
+      fontSize: 16,
+      color: '#444',
+      height: 44,
+      width: 150,
+      marginTop: 5,
+      marginBottom: 20,
+      borderRadius: 2,
+      borderBottomColor: '#f05a5b'
+    },
+    avatar: {
+      width: 80,
+      height: 80,
+      borderRadius: 80/ 2,
+      borderWidth: 2,
+      borderColor: '#f05a5b',
+      marginLeft: 50,
+      marginBottom: 10,
+      marginTop: 10
+      // alignItems: 'center',
+      // justifyContent: 'center'
+  },
+  imageSelect: {
+    flexDirection: 'column'
+  },
+  imageSelectButton:{
+    paddingTop: 5,
+    paddingLeft: 50,
+    
+  },
+  imageSelectText: {
+    color: '#f05a5b'
+  }
 
 })
 
