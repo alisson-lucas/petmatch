@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { View,ScrollView, KeyboardAvoidingView, Text, StyleSheet, TextInput, TouchableOpacity, Button, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
+import * as Permissions from 'expo-permissions';
 import firebase from 'firebase'
 
 import Avatar from '../../assets/thor3.jpeg'
@@ -14,10 +16,12 @@ export default class Cadastro extends Component {
         senha: '',
         nomePet: '',
         raca: '',
+        image: this.avatar,
         idade: null
       }
       
       this.cadastrar = this.cadastrar.bind(this);
+      // this.pegarFoto = this.pegarFoto.bind(this);
 
      let firebaseConfig = {
       apiKey: "AIzaSyCrIguFGp_DyKYvsf5u7ODgmZ_UCxG9Z70",
@@ -42,7 +46,8 @@ export default class Cadastro extends Component {
         firebase.database().ref('usuarios').child(user.uid).set({
           nome: this.state.nome,
           nomePet: this.state.nomePet,
-          raca: this.state.raca
+          raca: this.state.raca,
+          idade: this.state.idade
         })
 
         alert('usuário criado com sucesso')
@@ -69,10 +74,19 @@ export default class Cadastro extends Component {
      
     })
   }
+
+  // pegarFoto() {
+    
+  // }
   
   render (){
+    let { image } = this.state;
 
+    
+    
     return(
+
+      <ScrollView style={styles.scrollContainer}>
       <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding" style={styles.container}>
         <Text style={styles.titulos}>Dono</Text>
         <Text style={styles.linha}>_________________________________________________________________</Text>
@@ -93,8 +107,8 @@ export default class Cadastro extends Component {
             
           </View>
           <View style={styles.imageSelect}>
-          <Image style={styles.avatar} source={Avatar}/>
-          <TouchableOpacity style={styles.imageSelectButton}>
+          <Image style={styles.avatar} source={{ uri: image }}/>
+          <TouchableOpacity onPress={this._pickImage} style={styles.imageSelectButton}>
             <Text style={styles.imageSelectText}>Escolher foto</Text>
           </TouchableOpacity>
           </View>
@@ -106,8 +120,40 @@ export default class Cadastro extends Component {
             </TouchableOpacity>
           {/* () =>{ this.props.navigation.navigate('Login') && alert('Cadastrado')} */}
     </KeyboardAvoidingView>
+    </ScrollView>
   )
 }
+
+componentDidMount() {
+  this.getPermissionAsync();
+  // console.log('hi');
+}
+
+getPermissionAsync = async () => {
+  if (Constants.platform.ios) {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    if (status !== 'granted') {
+      alert('Sorry, we need camera roll permissions to make this work!');
+    }
+  }
+}
+
+_pickImage = async () => {
+  let result = await ImagePicker.launchImageLibraryAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.All,
+    allowsEditing: true,
+    aspect: [4, 3],
+    quality: 1
+  });
+
+  console.log(result);
+
+  if (!result.cancelled) {
+    this.setState({ image: result.uri });
+  }
+};
+
+
 }
 
 const styles = StyleSheet.create({
@@ -116,6 +162,14 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
+    },
+    scrollContainer: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignSelf: 'center',
+      width: '100%'
+      // alignItems: 'center',
+      // justifyContent: 'center',
     },
     label: {
       alignSelf: 'stretch',
