@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {View, ScrollView, StyleSheet, Image, Text, TouchableOpacity} from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 
@@ -8,44 +8,48 @@ import FeedFoto2 from '../../assets/thor2.jpeg'
 import FeedFoto3 from '../../assets/thor3.jpeg'
 import FeedFoto4 from '../../assets/thor4.jpeg'
 
-function Perfil () {
-    return (
-        <>
-        <ScrollView style={styles.container}>
-            <View style={styles.cardPerfil}>
-                <View style={styles.optBotoes}>
-                    <TouchableOpacity>
-                     <Ionicons style={styles.btnSettings} name="md-settings" size={32}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                      <Ionicons style={styles.btnEdit} name="md-create" size={32}/>
-                    </TouchableOpacity>
-                </View>
-                <Image style={styles.avatar} source={Avatar}/>
+export default class Perfil extends Component {
+    
+    render(){
 
-                <View style={styles.avatarTituloContainer}>
-                    <Text style={styles.avatarLabel}>Thor</Text>
-                    <Text style={styles.avatarSubLabel}>Maltês, 2 anos</Text>
+        return (
+            <>
+            <ScrollView style={styles.container}>
+                <View style={styles.cardPerfil}>
+                    <View style={styles.optBotoes}>
+                        <TouchableOpacity onPress={() => { this.props.navigation.navigate('Configuracoes') }}>
+                         <Ionicons style={styles.btnSettings} name="md-settings" size={32}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                          <Ionicons style={styles.btnEdit} name="md-create" size={32}/>
+                        </TouchableOpacity>
+                    </View>
+                    <Image style={styles.avatar} source={Avatar}/>
+    
+                    <View style={styles.avatarTituloContainer}>
+                        <Text style={styles.avatarLabel}>Thor</Text>
+                        <Text style={styles.avatarSubLabel}>Maltês, 2 anos</Text>
+                    </View>
+                    
+                    <View style={styles.petInfo}>
+                        <Text style={styles.infoLabel} >Dono: Alisson Oliveira</Text>
+                        <Text style={styles.infoLabel}>Cidade: Recife,PE</Text>
+                        <Text style={styles.infoLabel}>Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                         Etiam quis sapien ut leo laoreet temp id at nibh. Vivamus mauris sapien, tincidunt sit amet lacinia ut, 
+                         sollicitudin nec libero. vestibulum.</Text>
+                    </View>
                 </View>
-                
-                <View style={styles.petInfo}>
-                    <Text style={styles.infoLabel} >Dono: Alisson Oliveira</Text>
-                    <Text style={styles.infoLabel}>Cidade: Recife,PE</Text>
-                    <Text style={styles.infoLabel}>Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                     Etiam quis sapien ut leo laoreet temp id at nibh. Vivamus mauris sapien, tincidunt sit amet lacinia ut, 
-                     sollicitudin nec libero. vestibulum.</Text>
+                <View style={styles.fotosFeedContainer}>
+                    <Image style={styles.fotosFeed} source={FeedFoto}/>
+                    <Image style={styles.fotosFeed} source={FeedFoto2}/>
+                    <Image style={styles.fotosFeed} source={FeedFoto3}/>
+                    <Image style={styles.fotosFeed} source={FeedFoto4}/>
                 </View>
-            </View>
-            <View style={styles.fotosFeedContainer}>
-                <Image style={styles.fotosFeed} source={FeedFoto}/>
-                <Image style={styles.fotosFeed} source={FeedFoto2}/>
-                <Image style={styles.fotosFeed} source={FeedFoto3}/>
-                <Image style={styles.fotosFeed} source={FeedFoto4}/>
-            </View>
-
-        </ScrollView>
-        </>
-    )
+    
+            </ScrollView>
+            </>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
@@ -125,4 +129,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Perfil;
+// export default Perfil;

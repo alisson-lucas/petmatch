@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View,ScrollView, KeyboardAvoidingView, Text, StyleSheet, TextInput, TouchableOpacity, Button, Image } from 'react-native';
+import { View,ScrollView, KeyboardAvoidingView, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Button, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
@@ -16,6 +16,7 @@ export default class Cadastro extends Component {
         senha: '',
         nomePet: '',
         raca: '',
+        userUid: 0,
         image: this.avatar,
         idade: null
       }
@@ -41,8 +42,17 @@ export default class Cadastro extends Component {
 
     firebase.auth().signOut();
 
+    
+  }
+  
+  cadastrar() {
+    
     firebase.auth().onAuthStateChanged((user) => {
       if(user){
+        let state = this.state;
+        state.userUid = user.uid;
+        this.setState(state);
+  
         firebase.database().ref('usuarios').child(user.uid).set({
           nome: this.state.nome,
           nomePet: this.state.nomePet,
@@ -50,13 +60,14 @@ export default class Cadastro extends Component {
           idade: this.state.idade
         })
 
+  
         alert('usuário criado com sucesso')
       }
     })
 
-  }
 
-  cadastrar() {
+    // this.pegarFoto();
+
     firebase.auth().createUserWithEmailAndPassword(
       this.state.email,
       this.state.senha
@@ -73,17 +84,23 @@ export default class Cadastro extends Component {
       }
      
     })
-  }
 
-  // pegarFoto() {
-    
-  // }
+    // firebase.auth().signOut();
+
+
+  }
+  
+  uploadImage = async (uri, imageName) => {
+    const response = await fetch(uri);
+    const blob = await response.blob();
+
+    var ref = firebase.storage().ref().child("images/" + imageName);
+    return ref.put(blob);
+  }
   
   render (){
     let { image } = this.state;
 
-    
-    
     return(
 
       <ScrollView style={styles.scrollContainer}>
@@ -150,6 +167,13 @@ _pickImage = async () => {
 
   if (!result.cancelled) {
     this.setState({ image: result.uri });
+    this.uploadImage(result.uri, "test-image")
+        .then(() => {
+          alert("Success");
+        })
+        .catch((error) => {
+          alert(error);
+        });
   }
 };
 

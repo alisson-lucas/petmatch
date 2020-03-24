@@ -9,8 +9,13 @@ import HomeRoutes from './routes/homeRoutes'
 
 import Login from './pages/Login'
 import Cadastro from './pages/Cadastro'
+import Configuracoes from './pages/Configuracoes'
 
 const Stack = createStackNavigator();
+
+// const Tab = createBottomTabNavigator();
+
+
 
 
 export default function Routes () {
@@ -19,6 +24,7 @@ export default function Routes () {
             <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
             <Stack.Screen name="Home" component={HomeRoutes} options={{headerTitle: 'PetMatch', headerLeft: false, gestureEnabled: false}} />
             <Stack.Screen name="Cadastro" component={Cadastro} options={{headerBackTitleVisible: false, headerTintColor: '#000'}}/>
+            <Stack.Screen name="Configuracoes" component={Configuracoes} options={{headerBackTitleVisible: false}} />
         </Stack.Navigator>
     )
 }
