@@ -50,15 +50,6 @@ export default class Perfil extends Component {
                 state.raca = snapshot.val().raca;
                 state.idade = snapshot.val().idade;
                 this.setState(state);
-                
-                // snapshot.forEach((childItem) => {
-                //     state.userUid.push({
-                //         nome: childItem.val().nome,
-                //         nomePet: childItem.val().nomePet,
-                //         raca: childItem.val().raca,
-                //         idade: childItem.val().idade
-                //     })
-                // })
             })
   
     
