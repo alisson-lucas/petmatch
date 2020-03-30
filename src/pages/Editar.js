@@ -101,7 +101,7 @@ export default class Configuracoes extends Component {
                         <TextInput onChangeText={(cidade) => this.setState({cidade})} style={styles.inputCidade} placeholder="Cidade" placeholderTextColor="#999"
                         autoCorrect={false}/>
                         <TextInput onChangeText={(estado) => this.setState({estado})} style={styles.inputEstado} placeholder="Estado" placeholderTextColor="#999"
-                        autoCorrect={false}/>
+                        maxLength={2} autoCorrect={false}/>
                     </View>
                     <TextInput onChangeText={(nomePet) => this.setState({nomePet})} style={styles.input} placeholder="Nome do pet" placeholderTextColor="#999"
                      autoCorrect={false}/>
@@ -109,10 +109,10 @@ export default class Configuracoes extends Component {
                         <TextInput onChangeText={(raca) => this.setState({raca})} style={styles.inputCidade} placeholder="Raça" placeholderTextColor="#999"
                         autoCorrect={false}/>
                         <TextInput onChangeText={(idade) => this.setState({idade})} style={styles.inputEstado} placeholder="Idade" placeholderTextColor="#999"
-                        autoCorrect={false}/>
+                        keyboardType={'numeric'} autoCorrect={false}/>
                     </View> 
                     <TextInput onChangeText={(biografia) => this.setState({biografia})} style={styles.inputBiografia} placeholder="Biografia" placeholderTextColor="#999"
-                     autoCorrect={false}/>
+                    autoCorrect={false}/>
                 </View>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
@@ -211,6 +211,7 @@ const styles = StyleSheet.create({
         marginLeft: 40,
         borderRadius: 2,
         borderBottomColor: '#f05a5b',
+        textTransform: 'uppercase'
     },
     inputDuploContainer: {
         flexDirection: 'row'
