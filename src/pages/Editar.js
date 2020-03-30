@@ -15,9 +15,11 @@ export default class Configuracoes extends Component {
            nomePet: '',
            raca: '',
            biografia: '',
+           cidade: '',
+           estado: '',
            userUid: 0,
            image: this.avatar,
-           idade: null
+           idade: 0
          }
          
          this.editar = this.editar.bind(this);
@@ -48,21 +50,35 @@ export default class Configuracoes extends Component {
               state.userUid = user.uid;
               this.setState(state);
                 
-                firebase.database().ref('usuarios').child(user.uid).child('nome').set(this.state.nome)
-
-                firebase.database().ref('usuarios').child(user.uid).child('cidade').set(this.state.cidade)
-
-                firebase.database().ref('usuarios').child(user.uid).child('estado').set(this.state.estado)
-
-                firebase.database().ref('usuarios').child(user.uid).child('nomePet').set(this.state.nomePet)
-
-                firebase.database().ref('usuarios').child(user.uid).child('raca').set(this.state.raca)
-
-                firebase.database().ref('usuarios').child(user.uid).child('idade').set(this.state.idade)
-
-                firebase.database().ref('usuarios').child(user.uid).child('biografia').set(this.state.biografia)
+              if(this.state.nome.length > 0){
+                  firebase.database().ref('usuarios').child(user.uid).child('nome').set(this.state.nome)
+                  alert('usuário editado com sucesso')
+              }
+                if(this.state.cidade.length > 0){
+                    firebase.database().ref('usuarios').child(user.uid).child('cidade').set(this.state.cidade)
+                    alert('usuário editado com sucesso')
+                }
+                if(this.state.estado.length > 0){
+                    firebase.database().ref('usuarios').child(user.uid).child('estado').set(this.state.estado)
+                    alert('usuário editado com sucesso')
+                }
+                if(this.state.nomePet.length > 0){
+                    firebase.database().ref('usuarios').child(user.uid).child('nomePet').set(this.state.nomePet)
+                    alert('usuário editado com sucesso')
+                }
+                if(this.state.raca.length > 0){
+                    firebase.database().ref('usuarios').child(user.uid).child('raca').set(this.state.raca)
+                    alert('usuário editado com sucesso')
+                }
+                if(this.state.idade.length > 0){
+                    firebase.database().ref('usuarios').child(user.uid).child('idade').set(this.state.idade)
+                    alert('usuário editado com sucesso')
+                }
+                if(this.state.biografia.length > 0){
+                    firebase.database().ref('usuarios').child(user.uid).child('biografia').set(this.state.biografia)
+                    alert('usuário editado com sucesso')
+                }
                 
-                alert('usuário editado com sucesso')
         
             }
           })
