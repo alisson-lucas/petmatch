@@ -19,6 +19,9 @@ export default class Perfil extends Component {
            senha: '',
            nomePet: '',
            raca: '',
+           biografia: '',
+           cidade: '',
+           estado: '',
            userUid: 0,
            image: this.avatar,
            idade: null
@@ -49,6 +52,9 @@ export default class Perfil extends Component {
                 state.nomePet = snapshot.val().nomePet;
                 state.raca = snapshot.val().raca;
                 state.idade = snapshot.val().idade;
+                state.biografia = snapshot.val().biografia;
+                state.cidade = snapshot.val().cidade;
+                state.estado = snapshot.val().estado;
                 this.setState(state);
             })
   
@@ -81,10 +87,8 @@ export default class Perfil extends Component {
                     
                     <View style={styles.petInfo}>
                         <Text style={styles.infoLabel} >Dono: {this.state.nome}</Text>
-                        <Text style={styles.infoLabel}>Cidade: Recife,PE</Text>
-                        <Text style={styles.infoLabel}>Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                         Etiam quis sapien ut leo laoreet temp id at nibh. Vivamus mauris sapien, tincidunt sit amet lacinia ut, 
-                         sollicitudin nec libero. vestibulum.</Text>
+                        <Text style={styles.infoLabel}>Cidade: {this.state.cidade}, {this.state.estado}</Text>
+                        <Text style={styles.infoLabel}>Biografia: {this.state.biografia} </Text>
                     </View>
                 </View>
                 <View style={styles.fotosFeedContainer}>
