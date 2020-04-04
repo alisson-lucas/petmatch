@@ -85,17 +85,33 @@ export default class Cadastro extends Component {
      
     })
 
-    // firebase.auth().signOut();
-
-
+    
   }
   
-  uploadImage = async (uri, imageName) => {
+  escolherImagem = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync();
+
+
+    if(!result.cancelled) {
+      this.uploadImage(result.uri, 'testImage')
+      // .then(() => {
+      //   alert("Success");
+      // })
+      // .catch((error) => {
+      //   alert(error);
+      // });
+    }
+  }
+
+  uploadImage = async (uri,imageName) => {
     const response = await fetch(uri);
     const blob = await response.blob();
 
-    var ref = firebase.storage().ref().child("images/" + imageName);
-    return ref.put(blob);
+   
+    var ref = firebase.storage().ref().child('images/'+ imageName );
+    ref.put(blob).then(function(snapshot) {
+      console.log('Uploaded a blob or file!');
+    });
   }
   
   render (){
@@ -125,7 +141,7 @@ export default class Cadastro extends Component {
           </View>
           <View style={styles.imageSelect}>
           <Image style={styles.avatar} source={{ uri: image }}/>
-          <TouchableOpacity onPress={this._pickImage} style={styles.imageSelectButton}>
+          <TouchableOpacity onPress={this.escolherImagem} style={styles.imageSelectButton}>
             <Text style={styles.imageSelectText}>Escolher foto</Text>
           </TouchableOpacity>
           </View>
