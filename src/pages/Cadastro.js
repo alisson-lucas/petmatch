@@ -90,9 +90,10 @@ export default class Cadastro extends Component {
   
   escolherImagem = async () => {
     let result = await ImagePicker.launchImageLibraryAsync();
-
-
+    
+    
     if(!result.cancelled) {
+      this.setState({ image: result.uri });
       this.uploadImage(result.uri, 'testImage')
       // .then(() => {
       //   alert("Success");

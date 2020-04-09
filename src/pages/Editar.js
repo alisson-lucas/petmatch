@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {View, KeyboardAvoidingView,  ScrollView, StyleSheet, Image, Text,TextInput, TouchableOpacity} from 'react-native'
+import * as ImagePicker from 'expo-image-picker';
 import firebase from 'firebase'
 
 import Avatar from '../../assets/thor3.jpeg'
@@ -41,6 +42,41 @@ export default class Configuracoes extends Component {
        // firebase.analytics();
        }
    
+    }
+
+    escolherImagem = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync();
+        console.log(result)
+        
+        if(!result.cancelled) {
+          this.setState({ image: result.uri });
+          this.uploadImage(result.uri, 'testImage')
+          // .then(() => {
+          //   alert("Success");
+          // })
+          // .catch((error) => {
+          //   alert(error);
+          // });
+        }
+      }
+    
+    uploadImage = async (uri,imageName) => {
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user){
+                let state = this.state;
+                state.userUid = user.uid;
+                this.setState(state);
+                
+                
+                var ref = firebase.storage().ref().child(user.uid).child('perfilImage/'+ imageName );
+                ref.put(blob).then(function(snapshot) {
+                console.log('Uploaded a blob or file!');
+                });
+            }
+        })
+        
     }
 
     editar() {
@@ -90,7 +126,7 @@ export default class Configuracoes extends Component {
             <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding" style={styles.container}>
                 <View style={styles.avatarContainer}>
                     <Image style={styles.avatar} source={Avatar}/>
-                    <TouchableOpacity style={styles.imageSelectButton}>
+                    <TouchableOpacity style={styles.imageSelectButton} onPress={this.escolherImagem}>
                         <Text style={styles.imageSelectText}>Alterar foto</Text>
                     </TouchableOpacity>
                 </View>

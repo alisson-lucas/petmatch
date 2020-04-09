@@ -23,7 +23,7 @@ export default class Perfil extends Component {
            cidade: '',
            estado: '',
            userUid: 0,
-           image: this.avatar,
+           image: null,
            idade: null
          }
          
@@ -57,7 +57,12 @@ export default class Perfil extends Component {
                 state.estado = snapshot.val().estado;
                 this.setState(state);
             })
-  
+            
+            firebase.storage().ref().child(user.uid).child('perfilImage/testImage').getDownloadURL().then((url) => {
+                let state = this.state;
+                state.image = {uri: url};
+                this.setState(state);
+            })
     
         }
       })
@@ -78,7 +83,7 @@ export default class Perfil extends Component {
                           <Ionicons style={styles.btnEdit} name="md-create" size={32}/>
                         </TouchableOpacity>
                     </View>
-                    <Image style={styles.avatar} source={Avatar}/>
+                    <Image style={styles.avatar} source={this.state.image}/>
     
                     <View style={styles.avatarTituloContainer}>
                         <Text style={styles.avatarLabel}>{this.state.nomePet}</Text>
