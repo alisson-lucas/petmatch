@@ -11,6 +11,7 @@ import Login from './pages/Login'
 import Cadastro from './pages/Cadastro'
 import Configuracoes from './pages/Configuracoes'
 import Editar from './pages/Editar'
+import CadastroFoto from './pages/CadastroFoto'
 
 
 const Stack = createStackNavigator();
@@ -28,6 +29,7 @@ export default function Routes () {
             <Stack.Screen name="Cadastro" component={Cadastro} options={{headerBackTitleVisible: false, headerTintColor: '#000'}}/>
             <Stack.Screen name="Configuracoes" component={Configuracoes} options={{headerBackTitleVisible: false}} />
             <Stack.Screen name="Editar" component={Editar} options={{headerBackTitleVisible: false}} />
+            <Stack.Screen name="CadastroFoto" component={CadastroFoto} options={{headerBackTitleVisible: false}} />
         </Stack.Navigator>
     )
 }

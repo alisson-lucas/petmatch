@@ -14,6 +14,8 @@ export default class Cadastro extends Component {
         nome: '',
         email: '',
         senha: '',
+        cidade: '',
+        estado: '',
         nomePet: '',
         raca: '',
         userUid: 0,
@@ -57,7 +59,9 @@ export default class Cadastro extends Component {
           nome: this.state.nome,
           nomePet: this.state.nomePet,
           raca: this.state.raca,
-          idade: this.state.idade
+          idade: this.state.idade,
+          cidade: this.state.cidade,
+          estado: this.state.estado
         })
 
   
@@ -66,7 +70,6 @@ export default class Cadastro extends Component {
     })
 
 
-    // this.pegarFoto();
 
     firebase.auth().createUserWithEmailAndPassword(
       this.state.email,
@@ -85,6 +88,7 @@ export default class Cadastro extends Component {
      
     })
 
+    this.props.navigation.navigate('CadastroFoto')
     
   }
   
@@ -128,24 +132,25 @@ export default class Cadastro extends Component {
           autoCapitalize="none" autoCorrect={false}/>
         <TextInput onChangeText={(email) => this.setState({email})} style={styles.input} placeholder="E-mail" placeholderTextColor="#999" keyboardType="email-address" autoCapitalize="none" autoCorrect={false} />
         <TextInput secureTextEntry={true} onChangeText={(senha) => this.setState({senha})} style={styles.input} placeholder="Senha" placeholderTextColor="#999" autoCapitalize="none" autoCorrect={false} />
+        <View style={styles.inputDuploContainer}>
+          <TextInput onChangeText={(cidade) => this.setState({cidade})} style={styles.inputCidade} placeholder="Cidade" placeholderTextColor="#999"
+          autoCorrect={false}/>
+          <TextInput onChangeText={(estado) => this.setState({estado})} style={styles.inputEstado} placeholder="Estado" placeholderTextColor="#999"
+          maxLength={2} autoCorrect={false}/>
+        </View>
         <Text style={styles.titulos}>Pet</Text>
         <Text style={styles.linha}>_________________________________________________________________</Text>
         <TextInput onChangeText={(nomePet) => this.setState({nomePet})} style={styles.input} placeholder="Nome do Pet" placeholderTextColor="#999"
          autoCapitalize="none" autoCorrect={false}/>
         <View style={styles.inputPetContainer}>
-          <View style={styles.inputRacaContainer}>
-            <TextInput onChangeText={(raca) => this.setState({raca})} style={styles.inputRaca} placeholder="Raça" placeholderTextColor="#999"
+          <View style={styles.inputDuploContainer}>
+            <TextInput onChangeText={(raca) => this.setState({raca})} style={styles.inputCidade} placeholder="Raça" placeholderTextColor="#999"
               autoCapitalize="none" autoCorrect={false}/>
-            <TextInput keyboardType={'numeric'} onChangeText={(idade) => this.setState({idade})} style={styles.inputRaca} placeholder="Idade" placeholderTextColor="#999"
+            <TextInput keyboardType={'numeric'} onChangeText={(idade) => this.setState({idade})} style={styles.inputEstado} placeholder="Idade" placeholderTextColor="#999"
               autoCapitalize="none" autoCorrect={false}/>
             
           </View>
-          <View style={styles.imageSelect}>
-          <Image style={styles.avatar} source={{ uri: image }}/>
-          <TouchableOpacity onPress={this.escolherImagem} style={styles.imageSelectButton}>
-            <Text style={styles.imageSelectText}>Escolher foto</Text>
-          </TouchableOpacity>
-          </View>
+
         </View>
             <TouchableOpacity
               onPress={this.cadastrar}
@@ -305,7 +310,40 @@ const styles = StyleSheet.create({
   },
   imageSelectText: {
     color: '#f05a5b'
-  }
+  },
+  inputDuploContainer: {
+    flexDirection: 'row'
+  },inputCidade: {
+    borderWidth: 1,
+    borderColor: '#fff',
+    paddingHorizontal: 20,
+    backgroundColor: '#fff',
+    fontSize: 16,
+    color: '#444',
+    height: 44,
+    width: 170,
+    marginTop: 5,
+    marginBottom: 20,
+    // marginLeft: ,
+    borderRadius: 2,
+    borderBottomColor: '#f05a5b',
+  },
+  inputEstado: {
+    borderWidth: 1,
+    borderColor: '#fff',
+    paddingHorizontal: 20,
+    backgroundColor: '#fff',
+    fontSize: 16,
+    color: '#444',
+    height: 44,
+    width: 90,
+    marginTop: 5,
+    marginBottom: 20,
+    marginLeft: 40,
+    borderRadius: 2,
+    borderBottomColor: '#f05a5b',
+    textTransform: 'uppercase'
+  },
 
 })
 
