@@ -12,6 +12,7 @@ import Cadastro from './pages/Cadastro'
 import Configuracoes from './pages/Configuracoes'
 import Editar from './pages/Editar'
 import CadastroFoto from './pages/CadastroFoto'
+import NovaPost from './pages/NovaPost'
 
 
 const Stack = createStackNavigator();
@@ -30,6 +31,7 @@ export default function Routes () {
             <Stack.Screen name="Configuracoes" component={Configuracoes} options={{headerBackTitleVisible: false}} />
             <Stack.Screen name="Editar" component={Editar} options={{headerBackTitleVisible: false}} />
             <Stack.Screen name="CadastroFoto" component={CadastroFoto} options={{headerBackTitleVisible: false}} />
+            <Stack.Screen name="NovaPost" component={NovaPost} options={{headerBackTitleVisible: false}} />
         </Stack.Navigator>
     )
 }

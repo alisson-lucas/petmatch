@@ -5006,6 +5006,11 @@ react-native-maps@^0.26.1:
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.26.1.tgz#6ec316259b38d259c8974448d894bd7a23101da4"
   integrity sha512-p4VTB8YB5ZmOmDRCUpoHZkm05amZwhIo04AJMBbB9+JAR2PNNfpo0vceoWX0Mag4wnePkdzPomeWMplr/wimTg==
 
+react-native-platform-touchable@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-platform-touchable/-/react-native-platform-touchable-1.1.1.tgz#fde4acc65eea585d28b164d0c3716a42129a68e4"
+  integrity sha1-/eSsxl7qWF0osWTQw3FqQhKaaOQ=
+
 react-native-ratings@^6.3.0:
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/react-native-ratings/-/react-native-ratings-6.5.0.tgz#a1606ccba3c5b54eec8e6cfa4765a45cf0e4ab8d"
@@ -5097,6 +5102,13 @@ react-native-web@~0.11.7:
     scheduler "0.15.0"
     stacktrace-parser "^0.1.3"
     whatwg-fetch "^3.0.0"
+
+react-navigation-header-buttons@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/react-navigation-header-buttons/-/react-navigation-header-buttons-3.0.5.tgz#5b8c0fc32bc59382f02015e4b2f19a135b99dca4"
+  integrity sha512-b1AsL9k6Klp72CnAq4IF0xgw94FClBIsUr/pGUKa1PI+mStdF0AYZzi9qtYgqQNDIOpqxQ2xYUM9azL2VmPUeQ==
+  dependencies:
+    react-native-platform-touchable "^1.1.1"
 
 react-navigation-stack@^2.1.1:
   version "2.1.1"

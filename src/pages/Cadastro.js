@@ -54,6 +54,7 @@ export default class Cadastro extends Component {
         let state = this.state;
         state.userUid = user.uid;
         this.setState(state);
+        this.props.navigation.navigate('CadastroFoto')
   
         firebase.database().ref('usuarios').child(user.uid).set({
           nome: this.state.nome,
@@ -64,13 +65,13 @@ export default class Cadastro extends Component {
           estado: this.state.estado
         })
 
-  
+        
         alert('usuário criado com sucesso')
       }
     })
-
-
-
+    
+    
+    
     firebase.auth().createUserWithEmailAndPassword(
       this.state.email,
       this.state.senha
@@ -88,7 +89,6 @@ export default class Cadastro extends Component {
      
     })
 
-    this.props.navigation.navigate('CadastroFoto')
     
   }
   

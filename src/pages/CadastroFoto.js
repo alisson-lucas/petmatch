@@ -36,6 +36,8 @@ export default class CadastroFoto extends Component {
        
     }
 
+    
+
     escolherImagem = async () => {
         let result = await ImagePicker.launchImageLibraryAsync();
         
@@ -52,15 +54,26 @@ export default class CadastroFoto extends Component {
         }
     }
 
+    continuar(navigation) {
+       navigation = this.props.navigation.navigate('Home')
+    }
+
     uploadImage = async (uri,imageName) => {
         const response = await fetch(uri);
         const blob = await response.blob();
     
-       
-        var ref = firebase.storage().ref().child(user.uid).child('images/'+ imageName );
-        ref.put(blob).then(function(snapshot) {
-          console.log('Uploaded a blob or file!');
-        });
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user){
+                let state = this.state;
+                state.userUid = user.uid;
+                this.setState(state);
+
+                var ref = firebase.storage().ref().child(user.uid).child('images/'+ imageName );
+                ref.put(blob).then(function(snapshot) {
+                console.log('Uploaded a blob or file!');
+                });
+            }
+        })
     }
 
     componentDidMount() {
@@ -94,7 +107,7 @@ export default class CadastroFoto extends Component {
                         <Text style={styles.imageSelectText}>Escolher foto</Text>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity onPress={this.cadastrar} style={ styles.button }>
+                <TouchableOpacity onPress={() =>{ this.props.navigation.navigate('Home')}} style={ styles.button }>
                     <Text style={styles.buttonText}>Continuar</Text>
                 </TouchableOpacity>
             </View>
